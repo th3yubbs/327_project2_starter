@@ -32,12 +32,9 @@ struct tracking wordArray[MAX_WORDS];
 //TODO add variable to keep track of next available slot in array
 int nextSlot;
 
-//TODO define all functions in header file
-//******GOTTA DO
-
 //zero out array that tracks words and their occurrences
 void clearArray() {
-	nextSlot=0;
+	nextSlot = 0;
 }
 
 //how many unique words are in array
@@ -59,8 +56,12 @@ int getArrayWord_NumbOccur_At(int i) {
  * returns false: myfstream is not open
  *         true: otherwise*/
 bool processFile(fstream &myfstream) {
+	string line;
 	if(myfstream.is_open()){
-
+		while(getline(myfstream, line)){
+			processLine(line);
+		}
+		return true;
 	}
 	else{
 		return false;
@@ -71,19 +72,32 @@ bool processFile(fstream &myfstream) {
 /*take 1 line and extract all the tokens from it
 feed each token to processToken for recording*/
 void processLine(string &myString) {
-
+	string token;
+	stringstream streamy(myString);
+	while(getline(streamy, token, ' ')){
+		processToken(token);
+	}
 }
 
 /*Keep track of how many times each token seen*/
 void processToken(string &token) {
+	strip_unwanted_chars(token);
 
+	if(token == ""){
+		return;
+	}
 }
 
 /*if you are debugging the file must be in the project parent directory
   in this case Project2 with the .project and .cProject files*/
 bool openFile(fstream& myfile, const string& myFileName,
 		ios_base::openmode mode) {
-	return false;
+	myfile.open(myFileName, mode);
+	return true;
+
+	if(!myfile.is_open()){
+		return false;
+	}
 }
 
 /*iff myfile is open then close it*/
@@ -99,7 +113,23 @@ void closeFile(fstream& myfile) {
  * 			SUCCESS if all data is written and outputfilename closes OK
  * */
 int writeArraytoFile(const string &outputfilename) {
-	return -1;
+	ofstream out(outputfilename);
+	out.open(outputfilename);
+
+	if(!out.is_open()){
+			return FAIL_FILE_DID_NOT_OPEN;
+		}
+
+	if(nextSlot == 0){
+		return FAIL_NO_ARRAY_DATA;
+	}
+	else{
+
+		//TODO
+		return SUCCESS;
+	}
+
+
 }
 
 /*
@@ -111,4 +141,3 @@ void sortArray(sortOrder so) {
 }
 
 //TODO look in utilities.h for useful functions, particularly strip_unwanted_chars!
-
