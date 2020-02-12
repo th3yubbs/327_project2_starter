@@ -21,13 +21,13 @@ using namespace constants;
 //	stuff you will need
 //============================================================================
 //TODO define a structure to track words and number of times they occur
-struct tracking{
+struct trackingWords{
 	int count;
 	string word;
 };
 
 //TODO add a global array of entry structs (global to this file)
-struct tracking wordArray[MAX_WORDS];
+struct trackingWords wordArray[MAX_WORDS];
 
 //TODO add variable to keep track of next available slot in array
 int nextSlot;
@@ -86,6 +86,15 @@ void processToken(string &token) {
 	if(token == ""){
 		return;
 	}
+
+	for (int i = 0; i < nextSlot ; i++){
+		string tokenProcess = token;
+		string wordProccess = trackingWords;
+		//TODO
+
+	}
+
+
 }
 
 /*if you are debugging the file must be in the project parent directory
@@ -115,6 +124,7 @@ void closeFile(fstream& myfile) {
 int writeArraytoFile(const string &outputfilename) {
 	ofstream out(outputfilename);
 	out.open(outputfilename);
+	//TODO??
 
 	if(!out.is_open()){
 			return FAIL_FILE_DID_NOT_OPEN;
@@ -124,8 +134,6 @@ int writeArraytoFile(const string &outputfilename) {
 		return FAIL_NO_ARRAY_DATA;
 	}
 	else{
-
-		//TODO
 		return SUCCESS;
 	}
 
@@ -137,7 +145,7 @@ int writeArraytoFile(const string &outputfilename) {
  * The presence of the enum implies a switch statement
  */
 void sortArray(sortOrder so) {
-
+	//TODO
 }
 
 //TODO look in utilities.h for useful functions, particularly strip_unwanted_chars!
