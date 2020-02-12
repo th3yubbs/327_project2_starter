@@ -81,6 +81,7 @@ void processLine(string &myString) {
 
 /*Keep track of how many times each token seen*/
 void processToken(string &token) {
+	string processedToken = token;
 	strip_unwanted_chars(token);
 
 	if(token == ""){
@@ -88,13 +89,19 @@ void processToken(string &token) {
 	}
 
 	for (int i = 0; i < nextSlot ; i++){
-		string tokenProcess = token;
-		string wordProccess = trackingWords;
-		//TODO
+		string processedWord = wordArray[i].word;
 
+		if (processedToken == processedWord){
+			wordArray[i].count++;
+			return;
+		}
+		else{
+			wordArray[nextSlot].word = token;
+			wordArray[nextSlot].count = 1;
+			nextSlot++;
+			return;
+		}
 	}
-
-
 }
 
 /*if you are debugging the file must be in the project parent directory
@@ -136,8 +143,6 @@ int writeArraytoFile(const string &outputfilename) {
 	else{
 		return SUCCESS;
 	}
-
-
 }
 
 /*
@@ -145,7 +150,14 @@ int writeArraytoFile(const string &outputfilename) {
  * The presence of the enum implies a switch statement
  */
 void sortArray(sortOrder so) {
+	switch (so){
+	case 1:
+		return;
+	case 2:
+		return;
+	case 3:
+		return;
+	}
 	//TODO
 }
 
-//TODO look in utilities.h for useful functions, particularly strip_unwanted_chars!
