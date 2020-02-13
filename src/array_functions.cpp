@@ -17,6 +17,7 @@
 //============================================================================
 using namespace std;
 using namespace constants;
+
 //============================================================================
 //	stuff you will need
 //============================================================================
@@ -157,44 +158,39 @@ int writeArraytoFile(const string &outputfilename) {
  * The presence of the enum implies a switch statement
  */
 void sortArray(sortOrder so) {
-
 	switch (so) {
+
 	case NONE:
 		break;
-	case ASCENDING:
-//		string tempOne;
-//		string tempTwo;
-//		trackingWords tempThree;
-//
-//		for (int i = 0; i < nextSlot - 1; i++) {
-//			for (int j = i; j < nextSlot - 1 - i; j++) {
-//				tempOne = wordArray[j].word;
-//				tempTwo = wordArray[j + 1].word;
-//				if (tempOne > tempTwo) {
-//					tempThree = wordArray[j];
-//					wordArray[j] = wordArray[j + 1];
-//					wordArray[j + 1] = tempThree;
-//				}
-//			}
+	case ASCENDING: {
+		for (int i = 0; i < nextSlot - 1; i++) {
+			for (int j = i; j < nextSlot - 1 - i; j++) {
+				string tempOne = wordArray[j].word;
+				string tempTwo = wordArray[j + 1].word;
+				if (tempOne > tempTwo) {
+					trackingWords tempThree = wordArray[j];
+					wordArray[j] = wordArray[j + 1];
+					wordArray[j + 1] = tempThree;
+				}
+			}
+		}
 		break;
-	case DESCENDING:
-//			string tempOne;
-//			string tempTwo;
-//			trackingWords tempThree;
-//
-//			for (int i = 0; i < nextSlot - 1; i++) {
-//				for (int j = i; j < nextSlot - 1 - i; j++) {
-//					tempOne = wordArray[j].word;
-//					tempTwo = wordArray[j + 1].word;
-//					if (tempOne < tempTwo) {
-//						tempThree = wordArray[j];
-//						wordArray[j] = wordArray[j + 1];
-//						wordArray[j + 1] = tempThree;
-//					}
-//				}
-//				break;
-//				case NUMBER_OCCURRENCES:
+		case DESCENDING:
+		for (int i = 0; i < nextSlot - 1; i++) {
+			for (int j = i; j < nextSlot - 1 - i; j++) {
+				string tempOne = wordArray[j].word;
+				string tempTwo = wordArray[j + 1].word;
+				if (tempOne < tempTwo) {
+					trackingWords tempThree = wordArray[j];
+					wordArray[j] = wordArray[j + 1];
+					wordArray[j + 1] = tempThree;
+				}
+			}
+		}
 		break;
+		case NUMBER_OCCURRENCES:
+		break;
+	}
 	}
 }
 
