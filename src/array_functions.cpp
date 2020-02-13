@@ -21,7 +21,7 @@ using namespace constants;
 //	stuff you will need
 //============================================================================
 //TODO define a structure to track words and number of times they occur
-struct trackingWords{
+struct trackingWords {
 	int count;
 	string word;
 };
@@ -57,24 +57,24 @@ int getArrayWord_NumbOccur_At(int i) {
  *         true: otherwise*/
 bool processFile(fstream &myfstream) {
 	string line;
-	if(myfstream.is_open()){
-		while(getline(myfstream, line)){
+	if (myfstream.is_open()) {
+		while (getline(myfstream, line)) {
 			processLine(line);
 		}
 		return true;
-	}
-	else{
+	} else {
 		return false;
 	}
 
 }
 
 /*take 1 line and extract all the tokens from it
-feed each token to processToken for recording*/
+ feed each token to processToken for recording*/
 void processLine(string &myString) {
 	string token;
-	stringstream streamy(myString);
-	while(getline(streamy, token, ' ')){
+	stringstream feeder(myString);
+
+	while (getline(feeder, token, CHAR_TO_SEARCH_FOR)) {
 		processToken(token);
 	}
 }
@@ -84,41 +84,43 @@ void processToken(string &token) {
 	string processedToken = token;
 	strip_unwanted_chars(token);
 
-	if(token == ""){
-		return;
+	if (token == "") {
+		//return;
+		break;
 	}
 
-	for (int i = 0; i < nextSlot ; i++){
+	for (int i = 0; i < nextSlot; i++) {
 		string processedWord = wordArray[i].word;
+		toUpper(processedToken);
+		toUpper(processedWord);
 
-		if (processedToken == processedWord){
+		if (processedToken == processedWord) {
 			wordArray[i].count++;
 			return;
 		}
-		else{
-			wordArray[nextSlot].word = token;
-			wordArray[nextSlot].count = 1;
-			nextSlot++;
-			return;
-		}
 	}
+
+	wordArray[nextSlot].word = token;
+	wordArray[nextSlot].count = 1;
+	nextSlot++;
 }
 
 /*if you are debugging the file must be in the project parent directory
-  in this case Project2 with the .project and .cProject files*/
-bool openFile(fstream& myfile, const string& myFileName,
+ in this case Project2 with the .project and .cProject files*/
+bool openFile(fstream &myfile, const string &myFileName,
 		ios_base::openmode mode) {
 	myfile.open(myFileName, mode);
-	return true;
 
-	if(!myfile.is_open()){
+	if (!myfile.is_open()) {
 		return false;
+	} else {
+		return true;
 	}
 }
 
 /*iff myfile is open then close it*/
-void closeFile(fstream& myfile) {
-	if (myfile.is_open()){
+void closeFile(fstream &myfile) {
+	if (myfile.is_open()) {
 		myfile.close();
 	}
 }
@@ -131,16 +133,15 @@ void closeFile(fstream& myfile) {
 int writeArraytoFile(const string &outputfilename) {
 	ofstream out(outputfilename);
 	out.open(outputfilename);
-	//TODO??
+//TODO??
 
-	if(!out.is_open()){
-			return FAIL_FILE_DID_NOT_OPEN;
-		}
-
-	if(nextSlot == 0){
-		return FAIL_NO_ARRAY_DATA;
+	if (!out.is_open()) {
+		return FAIL_FILE_DID_NOT_OPEN;
 	}
-	else{
+
+	if (nextSlot == 0) {
+		return FAIL_NO_ARRAY_DATA;
+	} else {
 		return SUCCESS;
 	}
 }
@@ -150,7 +151,7 @@ int writeArraytoFile(const string &outputfilename) {
  * The presence of the enum implies a switch statement
  */
 void sortArray(sortOrder so) {
-	switch (so){
+	switch (so) {
 	case 1:
 		return;
 	case 2:
@@ -158,6 +159,6 @@ void sortArray(sortOrder so) {
 	case 3:
 		return;
 	}
-	//TODO
+//TODO
 }
 
