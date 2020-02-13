@@ -133,12 +133,15 @@ int writeArraytoFile(const string &outputfilename) {
 	ofstream out(outputfilename);
 	out.open(outputfilename);
 
-
 	if (!out.is_open()) {
 		return FAIL_FILE_DID_NOT_OPEN;
 	} else if (nextSlot == 0) {
 		return FAIL_NO_ARRAY_DATA;
 	} else {
+		for (int i = 0; i < nextSlot; i++) {
+			out << wordArray[i].word << CHAR_TO_SEARCH_FOR << wordArray[i].count << endl;
+		}
+		out.close();
 		return SUCCESS;
 	}
 }
@@ -148,14 +151,6 @@ int writeArraytoFile(const string &outputfilename) {
  * The presence of the enum implies a switch statement
  */
 void sortArray(sortOrder so) {
-	switch (so) {
-	case 1:
-		return;
-	case 2:
-		return;
-	case 3:
-		return;
-	}
-//TODO
+
 }
 
