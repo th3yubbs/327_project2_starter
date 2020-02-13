@@ -85,8 +85,7 @@ void processToken(string &token) {
 	strip_unwanted_chars(token);
 
 	if (token == "") {
-		//return;
-		break;
+		return;
 	}
 
 	for (int i = 0; i < nextSlot; i++) {
@@ -133,13 +132,11 @@ void closeFile(fstream &myfile) {
 int writeArraytoFile(const string &outputfilename) {
 	ofstream out(outputfilename);
 	out.open(outputfilename);
-//TODO??
+
 
 	if (!out.is_open()) {
 		return FAIL_FILE_DID_NOT_OPEN;
-	}
-
-	if (nextSlot == 0) {
+	} else if (nextSlot == 0) {
 		return FAIL_NO_ARRAY_DATA;
 	} else {
 		return SUCCESS;
