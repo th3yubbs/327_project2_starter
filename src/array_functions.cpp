@@ -161,12 +161,15 @@ void sortArray(sortOrder so) {
 	switch (so) {
 
 	case NONE:
+		//DO NOTHING
 		break;
 	case ASCENDING: {
 		for (int i = 0; i < nextSlot - 1; i++) {
-			for (int j = i; j < nextSlot - 1 - i; j++) {
+			for (int j = 0; j < nextSlot - 1 - i; j++) {
 				string tempOne = wordArray[j].word;
 				string tempTwo = wordArray[j + 1].word;
+				toUpper(tempOne);
+				toUpper(tempTwo);
 				if (tempOne > tempTwo) {
 					trackingWords tempThree = wordArray[j];
 					wordArray[j] = wordArray[j + 1];
@@ -177,9 +180,11 @@ void sortArray(sortOrder so) {
 		break;
 		case DESCENDING:
 		for (int i = 0; i < nextSlot - 1; i++) {
-			for (int j = i; j < nextSlot - 1 - i; j++) {
+			for (int j = 0; j < nextSlot - 1 - i; j++) {
 				string tempOne = wordArray[j].word;
 				string tempTwo = wordArray[j + 1].word;
+				toUpper(tempOne);
+				toUpper(tempTwo);
 				if (tempOne < tempTwo) {
 					trackingWords tempThree = wordArray[j];
 					wordArray[j] = wordArray[j + 1];
@@ -188,7 +193,9 @@ void sortArray(sortOrder so) {
 			}
 		}
 		break;
-		case NUMBER_OCCURRENCES:
+		case NUMBER_OCCURRENCES:{
+			//NEED HELP
+		}
 		break;
 	}
 	}
