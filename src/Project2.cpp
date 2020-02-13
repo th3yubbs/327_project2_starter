@@ -254,5 +254,6 @@ int main(int argc, char *argv[]) {
 	}
 	//what is your score
 	cout<<studentname + " grade is "<<total_points<<endl;
+	writeArraytoFile("../output/TestFile.txt");
 	return SUCCESS;
 }
