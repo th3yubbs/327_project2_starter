@@ -193,11 +193,26 @@ void sortArray(sortOrder so) {
 			}
 		}
 		break;
-		case NUMBER_OCCURRENCES:{
-			//NEED HELP
+		case NUMBER_OCCURRENCES:
+		{
+			bool swapped;
+			for (int i = 0; i < nextSlot - 1; i++) {
+				swapped = false;
+				for (int j = 0; j < nextSlot - i - 1; j++) {
+					int tempOne = wordArray[j].count;
+					int tempTwo = wordArray[j + 1].count;
+					if (tempOne < tempTwo) {
+						swap(wordArray[j], wordArray[j + 1]);
+						swapped = true;
+					}
+				}
+				if (swapped == false)
+					break;
+			}
+
 		}
-		break;
 	}
+		break;
 	}
 }
 
